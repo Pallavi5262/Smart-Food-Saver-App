@@ -1,0 +1,411 @@
+/* src/styles.css */
+/* Enable smooth scrolling for in‑page anchors */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 1. CSS Variables for easy theme tweaks */
+:root {
+  --color-primary: #1f7715;     /* Indigo */
+  --color-primary-dark: #3bc037;
+  --color-secondary: rgb(255, 247, 196);  /* Amber */
+  --color-secondary-dark: #F59E0B;
+  --color-accent: #10B981;      /* Emerald */
+  --color-bg: #F9FAFB;          /* Light gray bg */
+  --color-card: #FFFFFF;
+  --color-text: #374151;        /* Gray-700 */
+  --font-base: 'Inter', sans-serif;
+   --hero-start: #A8E063;   /* light spring green */
+  --hero-end:   #FDD835;   /* warm golden yellow */
+}
+
+/* 2. Global resets & base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: var(--color-bg);
+  font-family: var(--font-base);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* 3. Utility classes */
+.container-center {
+  max-width: 480px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: var(--color-card);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.text-center {
+  text-align: center;
+}
+
+/* 4. Typography */
+h1, h2, h3 {
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+}
+p {
+  margin-bottom: 1rem;
+}
+
+/* 5. Buttons */
+.btn {
+  display: inline-block;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+}
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: #1F2937; /* Gray-800 for contrast */
+  padding: 0.75rem 1.5rem;
+}
+.btn-secondary:hover {
+  background-color: var(--color-secondary-dark);
+}
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 0.75rem 1.5rem;
+}
+.btn-outline:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+/* 6. Form elements */
+.form-group {
+  margin-bottom: 1rem;
+}
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #D1D5DB; /* Gray-300 */
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(16,185,129,0.3);
+}
+.form-button {
+  width: 100%;
+}
+
+/* 7. Layout helpers */
+.mt-4 { margin-top: 1rem; }
+.mb-4 { margin-bottom: 1rem; }
+.space-y-4 > * + * { margin-top: 1rem; }
+.flex { display: flex; }
+.flex-center { justify-content: center; align-items: center; }
+.gap-4 { gap: 1rem; }
+
+/* Fade‑in base state */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* When .visible is added, it fades up into view */
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Navbar base */
+.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: rgb(255, 247, 196) ;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+  height: 70px;
+}
+
+.navbar-container {
+  max-width: 1024px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  justify-content: space-between;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navbar-nav {
+  list-style: none;
+  display: flex;
+  gap: 4rem;
+}
+
+.navbar-nav a {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--color-text);
+  padding: 0.5rem 0.75rem;
+  transition: background-color 0.2s, color 0.2s;
+  border-radius: 6px;
+}
+
+.navbar-nav a:hover,
+.navbar-nav a.active {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+/* 1. Keyframes for a fade‑up animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 2. Class to trigger it on load */
+.fade-in-onload {
+  opacity: 0; /* start hidden */
+  animation: fadeInUp 0.8s ease-out forwards;
+  /* Optional delay if you want to stagger */
+  /* animation-delay: 0.2s; */
+}
+
+/* Footer layout */
+
+/* HERO SECTION */
+.hero {
+  position: relative;
+  height: 100vh;                     
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  /* New food‑inspired gradient */
+  background: linear-gradient(135deg, var(--hero-start), var(--hero-end));
+
+  color: #fff;
+  overflow: hidden;
+}
+/* Optional subtle overlay animation */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at center,
+    rgba(253, 255, 214, 0.337) 0%,
+    transparent 60%
+  );
+  animation: slide 20s linear infinite;
+}
+
+@keyframes slide {
+  from { transform: rotate(0deg) translate(0,0); }
+  to   { transform: rotate(360deg) translate(0,0); }
+}
+
+/* Wave SVG at bottom of hero */
+.hero-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+}
+.hero-wave svg {
+  display: block;
+  width: 100%;
+  height: 80px;
+}
+
+/* HERO SECTION BACKGROUND */
+.hero {
+  position: relative;
+  height: 100vh;
+
+  background-size:cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;           /* text on top */
+  text-align: center;
+}
+
+/* Dark overlay for readability */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+}
+
+/* Bring hero content above overlay */
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Optional: scale up heading & subheading slightly */
+.hero h1 {
+  font-size: 3rem;
+  margin: 0.5rem 0;
+}
+.hero p {
+  font-size: 1.125rem;
+  max-width: 600px;
+  margin-bottom: 1.5rem;
+  color: rgba(255,255,255,0.9);
+}
+.hero {
+  position: relative;
+  height: 100vh;
+ 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* FULL‑BLEED BLUR OVERLAY */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* semi-transparent white so blur shows through */
+  background: rgba(255,255,255,0.3);
+  /* blur whatever’s behind this overlay */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* HERO CONTENT stays on top, unblurred */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  max-width: 1000px;
+}
+
+/* Text color inside the content box */
+.hero-content h1,
+.hero-content p {
+  color: #5f7189;
+}
+
+
+/* --- HERO BLUR OVERLAY (keep if you like the blur) --- */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* --- SOLID BEIGE BOX AROUND TEXT --- */
+.hero-content {
+  position: relative;      /* above the overlay */
+  z-index: 1;
+  background-color: #ffeecbd0; /* soft beige */
+  width: 750px;            /* adjust as you like */
+  padding: 2.5rem 3rem;
+  border-radius: 20px;
+  box-shadow: 10px 8px 24px rgba(0,0,0,0.1);
+  text-align: center;
+  margin-top: -100px;
+}
+
+/* Tweak heading & paragraph inside the box */
+.hero-content h1 {
+  margin-bottom: 1rem;
+  font-size: 2.75rem;
+  color: #1c6845;
+}
+.hero-content p {
+  margin-bottom: 1.5rem;
+  font-size: 1.125rem;
+  color: #0d0411;
+  margin-left: 20px;
+}
+
+/* Auth Tabs */
+.auth-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+.tab {
+  flex: 1;
+  max-width: 150px;
+  padding: 0.75rem 1rem;
+  background: var(--color-card);
+  border: 1px solid #D1D5DB;
+  border-bottom: none;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--color-text);
+  transition: background 0.2s;
+}
+.tab + .tab {
+  margin-left: 0.5rem;
+}
+.tab:hover {
+  background: var(--color-bg);
+}
+.tab.active {
+  background: var(--color-bg);
+  border-bottom: 2px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Ensure form sits under the tabs border */
+.container-center {
+  position: relative;
+  padding-top: 0; /* override if needed */
+}

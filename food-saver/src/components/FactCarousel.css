@@ -1,0 +1,66 @@
+/* FactCarousel.css */
+
+/* Outer wrapper: fixed 1000px width, centered on page */
+.slider-wrapper {
+  width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* arrows at the very edges */
+  padding: 2rem 0;
+  box-sizing: border-box;
+}
+
+/* Arrow buttons */
+.slider-arrow {
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.75rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+.slider-arrow:hover {
+  transform: scale(1.1);
+}
+
+/* Viewport: hides everything outside one slide */
+.slider-viewport {
+  flex: 1;                /* fill space between arrows */
+  overflow: hidden;       /* only show one slide */
+  position: relative;
+}
+
+/* Track: horizontal row of slides */
+.slider-track {
+  display: flex;
+  transition: transform 0.5s ease;
+  /* no gap here */
+}
+
+/* One full slide per view */
+.slide {
+  flex: 0 0 100%;         /* exactly one slide width */
+  box-sizing: border-box;
+  padding: 2rem;          /* inner padding */
+  margin: 0;              /* no outer margins */
+  background-color: rgb(255, 244, 194);
+  border-radius: 30px;
+  box-shadow: 10px 6px 20px rgba(250, 207, 126, 0.715);
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Slide text */
+.slide p {
+  font-size: 1.25rem;
+  color: var(--color-text);
+  text-align: center;
+  line-height: 1.4;
+}
